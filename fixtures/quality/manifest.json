@@ -1,0 +1,49 @@
+{
+  "seed": 42,
+  "source_track": "synthetic_quality",
+  "description": "Deterministic quality fixtures for Phase 2/4 rule tests",
+  "fixtures": [
+    {
+      "id": "missing_incident_id",
+      "file": "missing_incident_id.csv",
+      "expected": "quarantine",
+      "rule_id": "identity.missing_incident_number"
+    },
+    {
+      "id": "missing_opened_at",
+      "file": "missing_opened_at.csv",
+      "expected": "quarantine_or_exclude_feature",
+      "rule_id": "parsing.required_opened_at"
+    },
+    {
+      "id": "unparseable_resolved_at",
+      "file": "unparseable_resolved_at.csv",
+      "expected": "accept_with_warning_null_resolved",
+      "rule_id": "parsing.optional_resolved_at"
+    },
+    {
+      "id": "resolution_before_opening",
+      "file": "resolution_before_opening.csv",
+      "expected": "reject_invalid_temporal_contribution",
+      "rule_id": "temporal.resolution_before_opening"
+    },
+    {
+      "id": "valid_incident_update",
+      "file": "valid_incident_update.csv",
+      "expected": "accept",
+      "rule_id": null
+    },
+    {
+      "id": "exact_duplicate_rows",
+      "file": "exact_duplicate_rows.csv",
+      "expected": "preserve_raw_canonicalize_staging",
+      "rule_id": "duplicate.source_row"
+    },
+    {
+      "id": "missing_required_column",
+      "file": "missing_required_column.csv",
+      "expected": "fail_batch",
+      "rule_id": "batch.missing_required_columns"
+    }
+  ]
+}

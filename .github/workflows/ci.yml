@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: itintel
+          POSTGRES_USER: itintel
+          POSTGRES_PASSWORD: itintel_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U itintel -d itintel"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      POSTGRES_HOST: localhost
+      # CI service maps container 5432 to host 5432; local Compose defaults to 5433.
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: itintel
+      POSTGRES_USER: itintel
+      POSTGRES_PASSWORD: itintel_ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check src tests
+      - name: Unit tests
+        run: pytest tests/unit -q
+      - name: Migrate and smoke DB
+        run: |
+          itintel migrate
+          itintel smoke-db

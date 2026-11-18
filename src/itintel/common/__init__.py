@@ -1,0 +1,48 @@
+"""Shared constants and utilities."""
+
+SOURCE_TRACKS = (
+    "public_historical",
+    "historical_replay",
+    "synthetic_quality",
+    "synthetic_campus",
+)
+
+# Physical CSV header (downloaded UCI file). Website prose uses close_code.
+RAW_COLUMN_NAMES = (
+    "number",
+    "incident_state",
+    "active",
+    "reassignment_count",
+    "reopen_count",
+    "sys_mod_count",
+    "made_sla",
+    "caller_id",
+    "opened_by",
+    "opened_at",
+    "sys_created_by",
+    "sys_created_at",
+    "sys_updated_by",
+    "sys_updated_at",
+    "contact_type",
+    "location",
+    "category",
+    "subcategory",
+    "u_symptom",
+    "cmdb_ci",
+    "impact",
+    "urgency",
+    "priority",
+    "assignment_group",
+    "assigned_to",
+    "knowledge",
+    "u_priority_confirmation",
+    "notify",
+    "problem_id",
+    "rfc",
+    "vendor",
+    "caused_by",
+    "closed_code",
+    "resolved_by",
+    "resolved_at",
+    "closed_at",
+)

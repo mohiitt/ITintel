@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: itintel-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-itintel}
+      POSTGRES_USER: ${POSTGRES_USER:-itintel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-itintel_dev_change_me}
+    ports:
+      # Host may already use 5432; default published port is 5433.
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-itintel} -d ${POSTGRES_DB:-itintel}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  # Pipeline runtime image is built in later phases; migration helper for Phase 1.
+  migrate:
+    image: postgres:16-alpine
+    container_name: itintel-migrate
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD:-itintel_dev_change_me}
+      PGHOST: postgres
+      PGUSER: ${POSTGRES_USER:-itintel}
+      PGDATABASE: ${POSTGRES_DB:-itintel}
+    volumes:
+      - ./sql/migrations:/migrations:ro
+      - ./scripts/run_migrations.sh:/run_migrations.sh:ro
+    entrypoint: ["/bin/sh", "/run_migrations.sh"]
+    profiles: ["migrate"]
+
+volumes:
+  pgdata:

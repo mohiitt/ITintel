@@ -1,0 +1,48 @@
+# Default application configuration (non-secret).
+# Override with env vars / .env — see .env.example and itintel.config.
+
+app:
+  name: itintel
+  log_level: INFO
+
+database:
+  host: localhost
+  port: 5433
+  name: itintel
+  user: itintel
+  # password from POSTGRES_PASSWORD / Secrets Manager only
+
+source:
+  track: public_historical
+  local_dir: ./data/raw
+  # s3_bucket / s3_prefix set via env when using the S3 adapter
+
+time:
+  # Documented analysis convention; source TZ remains unknown.
+  analysis_tz_label: unknown_naive_wall_clock
+  timestamp_format: "%d/%m/%Y %H:%M"
+  missing_markers:
+    - ""
+    - "?"
+    - "NA"
+    - "N/A"
+    - "null"
+    - "NULL"
+    - "None"
+
+forecast:
+  primary_track: synthetic_campus
+  horizon_days: 7
+  # Real-data feasibility track is opt-in and must stay labeled.
+  real_feasibility_window:
+    start: "2016-03-01"
+    end: "2016-05-31"
+
+sla:
+  # Blocked until polarity ADR closes Phase 0 gate.
+  enabled: false
+  label_column: made_sla
+  polarity_status: unresolved
+
+export:
+  output_dir: ./data/releases

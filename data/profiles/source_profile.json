@@ -1,0 +1,281 @@
+{
+  "retrieval": {
+    "retrieved_at_utc": "2026-11-18T23:50:48.751855+00:00",
+    "source_url": "https://archive.ics.uci.edu/static/public/498/incident+management+process+enriched+event+log.zip",
+    "dataset_page": "https://archive.ics.uci.edu/dataset/498/incident+management+process+enriched+event+log",
+    "doi": "10.24432/C57S4H",
+    "license": "Creative Commons Attribution 4.0",
+    "zip_sha256": "6294e29a311647306bfdfc85783f7df66517c197b9cd49aa5ee36ba9c525d1d6",
+    "csv_sha256": "fd184bbfd62329cfe093e99da2ea7071905f2ead91900b448eb2635870821bef",
+    "csv_bytes": 46212397,
+    "zip_bytes": 2400214,
+    "delimiter": ",",
+    "encoding": "utf-8 (assumed; pandas default succeeded)",
+    "timestamp_format": "%d/%m/%Y %H:%M",
+    "timezone": "unknown; timestamps retained without invented TZ"
+  },
+  "counts": {
+    "event_rows": 141712,
+    "distinct_incidents": 24918,
+    "exact_duplicate_rows": 0,
+    "distinct_opening_dates": 207,
+    "events_per_incident": {
+      "min": 2,
+      "median": 5.0,
+      "mean": 5.687133798860262,
+      "max": 58
+    }
+  },
+  "timestamps": {
+    "opened_at_min": "2016-02-29 01:16:00",
+    "opened_at_max": "2017-02-16 14:17:00",
+    "sys_updated_at_min": "2016-02-29 01:23:00",
+    "sys_updated_at_max": "2017-02-18 15:00:00",
+    "missingness": {
+      "opened_at": {
+        "empty_or_marker": 0,
+        "unparseable_nonempty": 0,
+        "parsed_ok": 141712
+      },
+      "sys_created_at": {
+        "empty_or_marker": 53076,
+        "unparseable_nonempty": 0,
+        "parsed_ok": 88636
+      },
+      "sys_updated_at": {
+        "empty_or_marker": 0,
+        "unparseable_nonempty": 0,
+        "parsed_ok": 141712
+      },
+      "resolved_at": {
+        "empty_or_marker": 3141,
+        "unparseable_nonempty": 0,
+        "parsed_ok": 138571
+      },
+      "closed_at": {
+        "empty_or_marker": 0,
+        "unparseable_nonempty": 0,
+        "parsed_ok": 141712
+      }
+    }
+  },
+  "opening_months": {
+    "2016-02": 207,
+    "2016-03": 8995,
+    "2016-04": 7934,
+    "2016-05": 7508,
+    "2016-06": 5,
+    "2016-07": 14,
+    "2016-08": 15,
+    "2016-09": 12,
+    "2016-10": 16,
+    "2016-11": 26,
+    "2016-12": 37,
+    "2017-01": 94,
+    "2017-02": 55
+  },
+  "coverage": {
+    "mar_may_2016_incidents": 24437,
+    "mar_may_2016_share": 0.9806966851272173,
+    "forecast_recommendation": "Do not train a full-year real-demand model by default. Primary forecast track: labeled synthetic campus scenarios. Optional: restricted March\u2013May 2016 feasibility experiment with severe coverage caveats."
+  },
+  "earliest_snapshot": {
+    "states": {
+      "New": 16397,
+      "Active": 6503,
+      "Resolved": 1819,
+      "Awaiting User Info": 193,
+      "Awaiting Problem": 6
+    },
+    "has_closed_at": 24918,
+    "has_resolved_at": 23362,
+    "first_observation_delay_minutes": {
+      "median_minutes": 1.0,
+      "min_minutes": -147.0,
+      "max_minutes": 1146.0,
+      "negative_count": 5
+    }
+  },
+  "made_sla": {
+    "incidents_with_value_change": 9114,
+    "latest_observed_counts": {
+      "true": 15819,
+      "false": 9099
+    },
+    "semantic_note": "UCI variable prose: 'whether the incident exceeded the target SLA'. Column name 'made_sla' conventionally suggests attainment. Polarity is NOT assumed from the name; Phase 0 gate remains open until author PDF / value-transition analysis settles the semantics.",
+    "gate_status": "OPEN \u2014 polarity not finalized"
+  },
+  "columns": [
+    "number",
+    "incident_state",
+    "active",
+    "reassignment_count",
+    "reopen_count",
+    "sys_mod_count",
+    "made_sla",
+    "caller_id",
+    "opened_by",
+    "opened_at",
+    "sys_created_by",
+    "sys_created_at",
+    "sys_updated_by",
+    "sys_updated_at",
+    "contact_type",
+    "location",
+    "category",
+    "subcategory",
+    "u_symptom",
+    "cmdb_ci",
+    "impact",
+    "urgency",
+    "priority",
+    "assignment_group",
+    "assigned_to",
+    "knowledge",
+    "u_priority_confirmation",
+    "notify",
+    "problem_id",
+    "rfc",
+    "vendor",
+    "caused_by",
+    "closed_code",
+    "resolved_by",
+    "resolved_at",
+    "closed_at"
+  ],
+  "categorical": {
+    "incident_state": {
+      "n_unique": 9,
+      "top5": {
+        "Active": 38716,
+        "New": 36407,
+        "Resolved": 25751,
+        "Closed": 24985,
+        "Awaiting User Info": 14642
+      },
+      "unknown_marker_rows": 0
+    },
+    "contact_type": {
+      "n_unique": 5,
+      "top5": {
+        "Phone": 140462,
+        "Self service": 995,
+        "Email": 220,
+        "IVR": 18,
+        "Direct opening": 17
+      },
+      "unknown_marker_rows": 0
+    },
+    "category": {
+      "n_unique": 59,
+      "top5": {
+        "Category 26": 18453,
+        "Category 42": 15977,
+        "Category 53": 15968,
+        "Category 46": 13324,
+        "Category 23": 7779
+      },
+      "unknown_marker_rows": 78
+    },
+    "subcategory": {
+      "n_unique": 255,
+      "top5": {
+        "Subcategory 174": 35785,
+        "Subcategory 223": 15598,
+        "Subcategory 175": 10496,
+        "Subcategory 164": 7880,
+        "Subcategory 9": 4124
+      },
+      "unknown_marker_rows": 111
+    },
+    "impact": {
+      "n_unique": 3,
+      "top5": {
+        "2 - Medium": 134335,
+        "3 - Low": 3886,
+        "1 - High": 3491
+      },
+      "unknown_marker_rows": 0
+    },
+    "urgency": {
+      "n_unique": 3,
+      "top5": {
+        "2 - Medium": 134094,
+        "1 - High": 4020,
+        "3 - Low": 3598
+      },
+      "unknown_marker_rows": 0
+    },
+    "priority": {
+      "n_unique": 4,
+      "top5": {
+        "3 - Moderate": 132452,
+        "4 - Low": 4030,
+        "2 - High": 2972,
+        "1 - Critical": 2258
+      },
+      "unknown_marker_rows": 0
+    },
+    "assignment_group": {
+      "n_unique": 79,
+      "top5": {
+        "Group 70": 43474,
+        "?": 14213,
+        "Group 25": 7679,
+        "Group 24": 6752,
+        "Group 20": 6170
+      },
+      "unknown_marker_rows": 14213
+    },
+    "closed_code": {
+      "n_unique": 18,
+      "top5": {
+        "code 6": 86583,
+        "code 7": 20733,
+        "code 9": 13562,
+        "code 8": 5646,
+        "code 5": 4469
+      },
+      "unknown_marker_rows": 714
+    },
+    "made_sla": {
+      "n_unique": 2,
+      "top5": {
+        "true": 132497,
+        "false": 9215
+      },
+      "unknown_marker_rows": 0
+    },
+    "active": {
+      "n_unique": 2,
+      "top5": {
+        "true": 116726,
+        "false": 24986
+      },
+      "unknown_marker_rows": 0
+    },
+    "knowledge": {
+      "n_unique": 2,
+      "top5": {
+        "false": 116349,
+        "true": 25363
+      },
+      "unknown_marker_rows": 0
+    },
+    "notify": {
+      "n_unique": 2,
+      "top5": {
+        "Do Not Notify": 141593,
+        "Send Email": 119
+      },
+      "unknown_marker_rows": 0
+    }
+  },
+  "gate_decisions": {
+    "real_volume_forecasting": "FALLBACK \u2014 synthetic campus track primary",
+    "weekly_seasonality_real": "BLOCKED for annual/academic claims; March\u2013May only ~13 weeks and post-May coverage collapses",
+    "sla_classification": "CONDITIONAL \u2014 proceed only after polarity + maturity policy; sufficient latest true/false counts exist but semantics unresolved",
+    "creation_time_inference": "RESTRICT \u2014 earliest rows often contain outcome timestamps; use explicit opening-feature allowlist / first-observed snapshot",
+    "source_coverage": "OBSERVED demand only; March\u2013May concentrated; do not treat missing dates after May as zero arrivals"
+  }
+}
