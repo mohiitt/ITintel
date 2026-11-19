@@ -1,0 +1,128 @@
+{
+  "release_id": "75aab9d7-b944-4704-baf5-04152151088c",
+  "generated_at_utc": "2026-11-19T00:06:52.217671+00:00",
+  "source_tracks": [
+    "public_historical",
+    "synthetic_campus"
+  ],
+  "status": "complete",
+  "files": {
+    "overview_daily.csv": {
+      "sha256": "323cde3b1e069c03c0a7c3e67314339ce930993d7f537eb745e9c28e7d1abf6f",
+      "rows": 387,
+      "columns": [
+        "source_track",
+        "arrival_date",
+        "distinct_arrivals",
+        "observed_backlog",
+        "completeness_flag"
+      ]
+    },
+    "bottlenecks.csv": {
+      "sha256": "c0ba237f07020ae99662739887302156c52e4b29302baeacad0e2fb87d4038f3",
+      "rows": 864,
+      "columns": [
+        "source_track",
+        "period_start",
+        "period_end",
+        "category",
+        "priority",
+        "assignment_group",
+        "n_eligible",
+        "n_missing_outcome",
+        "median_hours",
+        "p90_hours",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "forecast_evaluation.csv": {
+      "sha256": "4300d9c76a95a6b17b157a1891489485178efb151345ee86d667b5a8466e07dd",
+      "rows": 63,
+      "columns": [
+        "model_version",
+        "fold_id",
+        "horizon_days",
+        "metric_name",
+        "metric_value",
+        "details_json",
+        "source_track",
+        "selection_status"
+      ]
+    },
+    "forecast_next_seven_days.csv": {
+      "sha256": "8e094008d013b70a4b26713208246132313e8f0551acacad4e64e52afee4c1e6",
+      "rows": 7,
+      "columns": [
+        "prediction_id",
+        "model_version",
+        "source_track",
+        "issue_date",
+        "target_date",
+        "predicted_count",
+        "generated_at"
+      ]
+    },
+    "ticket_risk.csv": {
+      "sha256": "67102e614d064792df6fd9dbb18545db6d9f835fadc5ed54c9fe9f98c9a56568",
+      "rows": 500,
+      "columns": [
+        "model_version",
+        "source_track",
+        "incident_number",
+        "feature_cutoff",
+        "score",
+        "threshold",
+        "compatible",
+        "scored_at",
+        "score_semantics"
+      ]
+    },
+    "data_quality.csv": {
+      "sha256": "b330f1f263eb17d2d170b94b5d1ad6f60987553dffb93dcdeeecd1dcf0a8fe29",
+      "rows": 1,
+      "columns": [
+        "dq_run_id",
+        "batch_id",
+        "source_track",
+        "dq_status",
+        "rule_id",
+        "rule_version",
+        "check_status",
+        "rows_checked",
+        "failure_count",
+        "distinct_affected",
+        "details"
+      ]
+    },
+    "freshness.csv": {
+      "sha256": "a2aca77d8fa1f7cc6376a1e132ca323cfe2e709025dc094e21da444b2c8f1ba0",
+      "rows": 3,
+      "columns": [
+        "source_track",
+        "state",
+        "content_sha256",
+        "row_count",
+        "accepted_count",
+        "quarantined_count",
+        "started_at",
+        "finished_at",
+        "updated_at"
+      ]
+    }
+  },
+  "row_counts": {
+    "overview_daily.csv": 387,
+    "bottlenecks.csv": 864,
+    "forecast_evaluation.csv": 63,
+    "forecast_next_seven_days.csv": 7,
+    "ticket_risk.csv": 500,
+    "data_quality.csv": 1,
+    "freshness.csv": 3
+  },
+  "notes": [
+    "Tableau Public refresh is a separate manual operation.",
+    "synthetic_campus forecasts are not measured SJSU demand.",
+    "ticket_risk scores are source-flag predictions; made_sla polarity unresolved."
+  ]
+}

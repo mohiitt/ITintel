@@ -1,0 +1,5 @@
+metric,value,detail
+Distinct incidents,24918,public_historical
+Opening dates observed,207,not full-year coverage
+Reopened incidents,275,1.1% of incidents
+SLA breach claim,0,BLOCKED — polarity unresolved

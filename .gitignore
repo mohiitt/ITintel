@@ -26,10 +26,24 @@ data/releases/*
 # Keep profiles (small derived)
 !data/profiles/
 
-# OS / IDE
+# OS / IDE / agent
 .DS_Store
 .idea/
 .vscode/
+.claude/
+.cursor/
+hyperd.log
 
 # Docker volumes
 .pgdata/
+.rocketride/
+
+# Tableau rebuild artifacts / temp (keep .twbx + data CSVs + build script)
+dashboard/hyper/
+dashboard/_probe*
+dashboard/.~*
+dashboard/*.twbr
+dashboard/*.html
+dashboard/itintel_extract.hyper
+dashboard/*.hyper
+!dashboard/IT_Service_Desk_Intelligence.twbx

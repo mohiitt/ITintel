@@ -1,0 +1,8 @@
+weekday_name,weekday_num,avg_daily_arrivals,median_daily_arrivals,n_days,track_label
+Monday,0,156.5,3.0,38,public_historical
+Tuesday,1,141.45714285714286,5.0,35,public_historical
+Wednesday,2,143.64705882352942,3.5,34,public_historical
+Thursday,3,114.02777777777777,3.5,36,public_historical
+Friday,4,119.65625,3.0,32,public_historical
+Saturday,5,39.9375,41.5,16,public_historical
+Sunday,6,35.1875,38.5,16,public_historical

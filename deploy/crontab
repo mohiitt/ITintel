@@ -1,0 +1,3 @@
+# Supercronic schedule (container local time = UTC unless TZ is set)
+# Daily pipeline at 06:15 UTC
+15 6 * * * cd /app && itintel run --track public_historical

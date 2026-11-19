@@ -1,69 +1,75 @@
 # IT Service Desk Intelligence
 
-Reproducible IT operations analytics pipeline for ticket volume, bottlenecks, forecasting, and (gated) SLA-risk analysis. Built against the [UCI Incident Management Process Enriched Event Log](https://archive.ics.uci.edu/dataset/498/incident+management+process+enriched+event+log) (DOI [10.24432/C57S4H](https://doi.org/10.24432/C57S4H), CC BY 4.0).
+Reproducible IT operations analytics pipeline for ticket volume, bottlenecks, forecasting, and gated SLA source-flag analysis.
 
-**Audience:** nontechnical IT service managers — findings support review and planning; they do not auto-escalate tickets or assign blame.
+**Dataset:** [UCI Incident Management Process Enriched Event Log](https://archive.ics.uci.edu/dataset/498/incident+management+process+enriched+event+log) (DOI [10.24432/C57S4H](https://doi.org/10.24432/C57S4H), CC BY 4.0).
 
-## Phase 0 decisions (verified)
+**Audience:** nontechnical IT service managers — findings support review/planning; they do not auto-escalate tickets.
+
+**Tableau Public:** [IT Service Desk Intelligence](https://public.tableau.com/app/profile/mohit.manoj.barade/viz/IT_Service_Desk_Intelligence/1ServiceOverview)
+
+## Phase decisions
 
 | Gate | Decision |
 | --- | --- |
-| Forecasting | **Synthetic campus track is primary** — real openings are ~98% March–May 2016 |
-| SLA modeling | **Conditional** — `made_sla` polarity unresolved; training disabled by default |
+| Forecasting | **Synthetic campus track is primary** (~98% of real openings are Mar–May 2016) |
+| SLA modeling | **Source-flag experiment only** — `made_sla` polarity unresolved |
 | Opening features | Restricted allowlist; earliest rows contain outcome timestamps |
 | Coverage | Report *observed* demand only |
 
-Details: [`docs/reports/phase0_feasibility_report.md`](docs/reports/phase0_feasibility_report.md), [`docs/adr/0001-forecast-and-sla-track-decisions.md`](docs/adr/0001-forecast-and-sla-track-decisions.md).
-
-## Quick start (Phase 1)
+## Quick start
 
 ```bash
 cp .env.example .env
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 
-# PostgreSQL (Compose publishes host port 5433 by default to avoid clashing with local Postgres)
-docker compose up -d postgres
-# wait until healthy, then:
+docker compose up -d postgres   # host port 5433 by default
 itintel migrate
-itintel smoke-db
-itintel discover
-
-# Unit tests (no DB required)
+itintel run --track public_historical
 pytest tests/unit -q
 ```
 
-Optional: reproduce the source profile with `python scripts/phase0_profile_source.py` (requires the CSV under `data/raw/`).
+Useful commands: `ingest`, `validate`, `marts`, `forecast`, `sla`, `eda`, `export`, `smoke-db`.
 
-Phase 0 artifacts: `docs/reports/phase0_feasibility_report.md`, `data/profiles/source_profile.json`.
+## Measured local results
 
-## Repository layout
-
-```
-src/itintel/          Application (ingestion, validation, transforms, features, training, scoring, export)
-sql/migrations/       Versioned schema DDL
-config/               Non-secret defaults
-docs/                 ADRs, contracts, reports, guides
-fixtures/             Synthetic quality + campus scenario fixtures (Phase 2+)
-tests/                Unit and integration tests
-dashboard/            Tableau workbook assets (later)
-deploy/               AWS / Compose deployment notes (later)
-data/                 Local raw inputs, profiles, releases (raw CSV gitignored)
-```
-
-## Attribution
-
-Amaral, C., Fantinato, M., & Peres, S. (2018). Incident management process enriched event log [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C57S4H.
+| Item | Result |
+| --- | --- |
+| Raw events loaded | 141,712 (checksum-idempotent) |
+| Validation | 141,712 accepted / 0 quarantined / 78 warnings |
+| Tickets in marts | 24,918 over 207 opening dates |
+| Quarantine proof | missing incident ID → `identity.missing_incident_number` |
+| Forecast | synthetic campus; selected **seasonal_naive** |
+| SLA | source-flag AP≈0.91 on test — **not** verified breach |
+| CSV / Hyper release | `data/releases/LATEST_GOOD` + `dashboard/IT_Service_Desk_Intelligence.twbx` |
+| Tableau Public | [live workbook](https://public.tableau.com/app/profile/mohit.manoj.barade/viz/IT_Service_Desk_Intelligence/1ServiceOverview) |
 
 ## Status
 
 | Phase | Status |
 | --- | --- |
-| 0 Feasibility / source verification | Done |
-| 1 Project foundation + Compose/Postgres | Done |
-| 2 Synthetic fixtures + campus scenario | Done (generators + fixtures on disk) |
-| 3 Raw ingestion + batch idempotency | Done (public CSV loaded; checksum skip verified) |
-| 4–13 Validation → Tableau → AWS | Not started |
+| 0 Source verification | Done |
+| 1 Foundation + Postgres | Done |
+| 2 Synthetic fixtures | Done |
+| 3 Raw ingestion | Done |
+| 4 Validation / quarantine | Done |
+| 5 Ticket marts | Done |
+| 6 EDA | Done (`docs/reports/phase6_eda_*.md`) |
+| 7 Forecasting | Done (synthetic) |
+| 8 SLA experiment | Done as source-flag; breach claim blocked |
+| 9 CSV exports | Done |
+| 10 Scheduler / CI | CI workflow + crontab sketch; Supercronic image wiring optional |
+| 11 Tableau Public | Done — [3-page staff workbook](https://public.tableau.com/app/profile/mohit.manoj.barade/viz/IT_Service_Desk_Intelligence/1ServiceOverview) (Show Sheets on) |
+| 12 AWS deploy | **Blocked — needs AWS account access** |
+| 13 Documentation | Done (guides, model cards, evidence ledger) |
 
-CLI: `itintel migrate | smoke-db | discover | ingest [path]`.
+## What I need from you to finish
+
+1. **AWS** — account/profile/region + OK to create EC2/S3/IAM role/Secrets Manager (or say skip AWS for the portfolio).
+
+Optional: author PDF confirmation of `made_sla` polarity if you want a true breach claim on the resume.
+
+## Attribution
+
+Amaral, C., Fantinato, M., & Peres, S. (2018). Incident management process enriched event log [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C57S4H.

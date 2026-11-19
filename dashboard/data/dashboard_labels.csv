@@ -1,0 +1,2 @@
+project,source_disclosure,doi,release_id,forecast_note,sla_note,backlog_note,tableau_refresh_note
+IT Service Desk Intelligence,UCI Incident Management Process Enriched Event Log (CC BY 4.0),10.24432/C57S4H,release_20261119T000652Z_75aab9d7,"Forecast track is synthetic_campus (scenario), not SJSU demand",Risk scores predict made_sla source flag; polarity unresolved — not verified breach,Observed backlog with incomplete prehistory — not total institutional inventory,Tableau Public CSV refresh is manual after each pipeline release

@@ -1,0 +1,7 @@
+section,headline,body
+overview,Service overview (public historical extract),UCI ServiceNow event log (CC BY 4.0). Observed openings only — not total campus demand. Mar–May 2016 dominate coverage.
+backlog,Observed backlog caveat,Backlog is observed with incomplete prehistory. Month-end snapshot shown — not institutional inventory.
+bottlenecks,Bottlenecks interpretation,"Use median/p90 with n_eligible. Assignment group is ownership snapshot, not causal proof of delay."
+sla,SLA attainment,Verified breach modeling unavailable — made_sla polarity unresolved. Risk page shows source-flag scores only.
+forecast,Forecast disclosure,Primary forecast track is synthetic_campus for demonstration. Not SJSU academic-calendar demand.
+refresh,Tableau refresh,Tableau Public uses extracts. Republish manually after each pipeline release. Not a live database connection.

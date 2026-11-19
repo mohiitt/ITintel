@@ -1,0 +1,8 @@
+prediction_id,model_version,source_track,issue_date,target_date,predicted_count,generated_at,track_disclosure
+1,forecast_synthetic_campus_seasonal_naive_20261119T000641,synthetic_campus,2026-07-03,2026-07-04,76.0,2026-11-19 00:06:41.166050+00:00,SYNTHETIC campus scenario — NOT measured SJSU demand
+2,forecast_synthetic_campus_seasonal_naive_20261119T000641,synthetic_campus,2026-07-03,2026-07-05,14.0,2026-11-19 00:06:41.166050+00:00,SYNTHETIC campus scenario — NOT measured SJSU demand
+3,forecast_synthetic_campus_seasonal_naive_20261119T000641,synthetic_campus,2026-07-03,2026-07-06,217.0,2026-11-19 00:06:41.166050+00:00,SYNTHETIC campus scenario — NOT measured SJSU demand
+4,forecast_synthetic_campus_seasonal_naive_20261119T000641,synthetic_campus,2026-07-03,2026-07-07,259.0,2026-11-19 00:06:41.166050+00:00,SYNTHETIC campus scenario — NOT measured SJSU demand
+5,forecast_synthetic_campus_seasonal_naive_20261119T000641,synthetic_campus,2026-07-03,2026-07-08,227.0,2026-11-19 00:06:41.166050+00:00,SYNTHETIC campus scenario — NOT measured SJSU demand
+6,forecast_synthetic_campus_seasonal_naive_20261119T000641,synthetic_campus,2026-07-03,2026-07-09,252.0,2026-11-19 00:06:41.166050+00:00,SYNTHETIC campus scenario — NOT measured SJSU demand
+7,forecast_synthetic_campus_seasonal_naive_20261119T000641,synthetic_campus,2026-07-03,2026-07-10,191.0,2026-11-19 00:06:41.166050+00:00,SYNTHETIC campus scenario — NOT measured SJSU demand

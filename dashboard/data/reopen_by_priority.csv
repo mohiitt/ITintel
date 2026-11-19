@@ -1,0 +1,5 @@
+priority,incidents,reopened_incidents,reopen_pct,note
+3 - Moderate,23681,272,1.15,"Reopen_observed from source field — association only, not agent blame"
+4 - Low,741,1,0.13,"Reopen_observed from source field — association only, not agent blame"
+2 - High,311,1,0.32,"Reopen_observed from source field — association only, not agent blame"
+1 - Critical,185,1,0.54,"Reopen_observed from source field — association only, not agent blame"

@@ -1,0 +1,2 @@
+dq_run_id,batch_id,source_track,dq_status,rule_id,rule_version,check_status,rows_checked,failure_count,distinct_affected,details
+120e86eb-a029-4799-9d54-1591a1aac0b0,5c97e85a-a2ba-4386-9416-db58eb0666ca,public_historical,passed,optional.unknown_category,1.0.0,fail,141712,78,78,Category is a missing-value marker; map to explicit unknown bucket.
